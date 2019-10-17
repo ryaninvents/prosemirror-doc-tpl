@@ -53,6 +53,7 @@
   "devDependencies": {
     "@pika/pack": "^0.4.0",
     "@pika/plugin-build-node": "^0.4.0",
+    "@pika/plugin-build-types": "^0.6.1",
     "@pika/plugin-bundle-node": "^0.4.0",
     "@pika/plugin-ts-standard-pkg": "^0.4.0",
     "@semantic-release/changelog": "^3.0.4",
@@ -91,6 +92,9 @@
       ],
       [
         "@pika/plugin-bundle-node"
+      ],
+      [
+        "@pika/plugin-build-types"
       ]
     ]
   },
