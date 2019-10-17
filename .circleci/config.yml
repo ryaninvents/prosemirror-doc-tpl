@@ -1,0 +1,64 @@
+---
+version: 2
+jobs:
+  install:
+    docker: &NodeDocker
+      - image: 'circleci/node:11'
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules/**
+  build:
+    docker: *NodeDocker
+    steps:
+      - checkout
+      - &AttachWorkspaceHere
+        attach_workspace:
+          at: .
+      - run:
+          name: build
+          command: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - pkg/**
+  test:
+    docker: *NodeDocker
+    steps:
+      - checkout
+      - *AttachWorkspaceHere
+      - run:
+          name: test
+          command: npm test
+  release:
+    docker: *NodeDocker
+    steps:
+      - checkout
+      - *AttachWorkspaceHere
+      - run:
+          name: release
+          command: npx semantic-release
+workflows:
+  version: 2
+  main:
+    jobs:
+      - install:
+          context: gh-npm-public
+      - build:
+          context: gh-npm-public
+          requires:
+            - install
+      - test:
+          context: gh-npm-public
+          requires:
+            - install
+      - release:
+          context: gh-npm-public
+          requires:
+            - build
+            - test

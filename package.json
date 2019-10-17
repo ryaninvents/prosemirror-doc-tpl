@@ -1,0 +1,117 @@
+{
+  "name": "@ryaninvents/prosemirror-doc-tpl",
+  "version": "0.0.0-semantically-released",
+  "description": "Create Prosemirror documents using JSX-like syntax",
+  "repository": "https://github.com/ryaninvents/prosemirror-doc-tpl.git",
+  "license": "MIT",
+  "scripts": {
+    "build": "pack build",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier --fix",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/__tests__/**"
+    ],
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
+    ]
+  },
+  "dependencies": {
+    "htm": "^2.2.1"
+  },
+  "devDependencies": {
+    "@pika/pack": "^0.4.0",
+    "@pika/plugin-build-node": "^0.4.0",
+    "@pika/plugin-bundle-node": "^0.4.0",
+    "@pika/plugin-ts-standard-pkg": "^0.4.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.2.0",
+    "@semantic-release/git": "^7.1.0-beta.3",
+    "@semantic-release/github": "^5.4.0",
+    "@semantic-release/npm": "^5.2.0-beta.6",
+    "@semantic-release/release-notes-generator": "^7.2.0",
+    "@types/babel__core": "^7.1.2",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.8",
+    "@types/prosemirror-model": "^1.7.2",
+    "husky": "^2.3.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.17.1",
+    "prosemirror-model": "^1.7.4",
+    "prosemirror-schema-basic": "^1.0.1",
+    "prosemirror-test-builder": "^1.0.1",
+    "semantic-release": "^16.0.0-beta.22",
+    "sort-package-json": "^1.22.1",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.2"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-bundle-node"
+      ]
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg"
+        }
+      ],
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
+}
