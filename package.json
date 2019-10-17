@@ -78,6 +78,9 @@
     "tslint": "^5.17.0",
     "typescript": "^3.5.2"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "@pika/pack": {
     "pipeline": [
       [
