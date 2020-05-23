@@ -5,7 +5,7 @@
 [![CircleCI][circleci-image]][circleci-url]
 [![GitHub repository][github-image]][github-url]
 [![semantic-release][semantic-release-image]][semantic-release-url]
-![Maintenance status as of 2019][maint-image]
+![Maintenance status as of 2020][maint-image]
 
 ## Why do I want to use this?
 
@@ -50,7 +50,7 @@ const starterDocument = pm`
 
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 
-[maint-image]: https://img.shields.io/maintenance/yes/2019.svg
+[maint-image]: https://img.shields.io/maintenance/yes/2020.svg
 
 [github-image]: https://img.shields.io/github/stars/ryaninvents/prosemirror-doc-tpl.svg?style=social
 
